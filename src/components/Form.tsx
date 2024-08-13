@@ -13,7 +13,8 @@ export const Form = () => {
   } = form;
 
   const onSubmit = (data: FieldValues) => {
-    console.log("submit", data);
+    alert("your Form is now submitted");
+    console.log(data);
     reset();
   };
   return (
