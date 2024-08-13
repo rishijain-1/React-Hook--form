@@ -1,17 +1,37 @@
 import { useForm } from "react-hook-form";
-import type { FieldValues } from "react-hook-form";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+const form1Schema = z.object
+    ({
+        name: z.string(),
+        email: z.string().email({ message: "Email is invalid" }),
+        password: z.string()
+            .min(6, { message: "Password is required" }),
+        confirmPassword: z
+            .string()
+            .min(6, { message: "Confirm password is required" })
+    }).refine(data=> data.password === data.confirmPassword,{
+        message: "Password does not match",
+        path: ["confirmPassword"],
+    })
 
+type TForm1Schema =z.infer<typeof form1Schema>
 export const Form1 = () => {
-  const Form1 = useForm<FieldValues>();
+  
+    const Form1 = useForm<TForm1Schema>({
+    resolver: zodResolver(form1Schema),
+  });
+
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    getValues,
+    
   } = Form1;
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: TForm1Schema) => {
     console.log("submit", data);
     reset();
   };
@@ -24,7 +44,7 @@ export const Form1 = () => {
           type="text"
           id="name"
           placeholder="Name"
-          {...register("name", { required: "Name is required" })}
+          {...register("name")}
         />
         {errors.name && (
           <p className="form-error-msg">{`${errors.name.message}`}</p>
@@ -34,7 +54,7 @@ export const Form1 = () => {
         <input
           type="email"
           placeholder="Email"
-          {...register("email", { required: "Email is required" })}
+          {...register("email")}
         />
         {errors.email && (
           <p className="form-error-msg">{`${errors.email.message}`}</p>
@@ -44,13 +64,7 @@ export const Form1 = () => {
         <input
           type="password"
           placeholder="Password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 6,
-              message: "Password should be atleast 6 characters",
-            },
-          })}
+          {...register("password")}
         />
 
         {errors.password && (
@@ -61,11 +75,7 @@ export const Form1 = () => {
         <input
           type="password"
           placeholder="Confirm-Password"
-          {...register("confirmPassword", {
-            required: "Confirm Password is required",
-            validate: (value: string) =>
-              value === getValues("password") || "Password does not match",
-          })}
+          {...register("confirmPassword")}
         />
 
         {errors.confirmPassword && (
@@ -77,6 +87,5 @@ export const Form1 = () => {
         </button>
       </form>
     </div>
-    
   );
 };
