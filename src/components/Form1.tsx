@@ -33,8 +33,10 @@ export const Form1 = () => {
   } = Form1;
 
   const onSubmit = (data: TForm1Schema) => {
-    alert("your Form is now submitted");
-    console.log(data);
+    alert("Form Data Submited"+
+        "\nName :-" + data.name
+        + "\nEmail :-" + data.email
+      );
     reset();
   };
   return (
