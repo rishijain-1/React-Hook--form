@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import type { FieldValues } from "react-hook-form";
 
-export const Form = () => {
-  const form = useForm<FieldValues>();
+export const Form1 = () => {
+  const Form1 = useForm<FieldValues>();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
     getValues,
-  } = form;
+  } = Form1;
 
   const onSubmit = (data: FieldValues) => {
     console.log("submit", data);
@@ -17,7 +17,7 @@ export const Form = () => {
   };
   return (
     <div>
-      <h1>Form </h1>
+      <h1>Form 1</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
         <input
@@ -77,5 +77,6 @@ export const Form = () => {
         </button>
       </form>
     </div>
+    
   );
 };
