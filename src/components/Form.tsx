@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 export const Form = () => {
+  // useState to manage a custom success message
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
   const form = useForm<FieldValues>();
   const {
     register,
@@ -13,15 +17,25 @@ export const Form = () => {
   } = form;
 
   const onSubmit = (data: FieldValues) => {
-    alert("Form Data Submited"+
-      "\nName :-" + data.name
-      + "\nEmail :-" + data.email
+    alert(
+      "Form Data Submitted" +
+        "\nName :-" +
+        data.name +
+        "\nEmail :-" +
+        data.email
     );
+  
+    setSuccessMessage("Form submitted successfully!");
+
     reset();
   };
+
   return (
     <div>
-      <h1>Form </h1>
+      <h1>Form</h1>
+
+      {successMessage && <p className="success-msg">{successMessage}</p>}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
         <input
@@ -52,11 +66,10 @@ export const Form = () => {
             required: "Password is required",
             minLength: {
               value: 6,
-              message: "Password should be atleast 6 characters",
+              message: "Password should be at least 6 characters",
             },
           })}
         />
-
         {errors.password && (
           <p className="form-error-msg">{`${errors.password.message}`}</p>
         )}
@@ -64,14 +77,13 @@ export const Form = () => {
         <label>Confirm Password</label>
         <input
           type="password"
-          placeholder="Confirm-Password"
+          placeholder="Confirm Password"
           {...register("confirmPassword", {
             required: "Confirm Password is required",
             validate: (value: string) =>
-              value === getValues("password") || "Password does not match",
+              value === getValues("password") || "Passwords do not match",
           })}
         />
-
         {errors.confirmPassword && (
           <p className="form-error-msg">{`${errors.confirmPassword.message}`}</p>
         )}
