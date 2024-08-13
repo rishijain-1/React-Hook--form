@@ -22,3 +22,8 @@ input[type="password"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.form-error-msg {
+  color: red;
+  text-align: left;
+}
