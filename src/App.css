@@ -27,3 +27,12 @@ input[type="password"] {
   color: red;
   text-align: left;
 }
+
+.Link{
+  width: 100%;
+  text-align: right;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}

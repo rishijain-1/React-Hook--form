@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
 const form1Schema = z.object
     ({
         name: z.string(),
@@ -86,6 +87,9 @@ export const Form1 = () => {
           Submit
         </button>
       </form>
+      <div className="Link">
+        <Link to="/">Form1</Link>
+      </div>
     </div>
   );
 };

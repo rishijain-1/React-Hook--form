@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import type { FieldValues } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export const Form = () => {
   const form = useForm<FieldValues>();
@@ -76,6 +77,10 @@ export const Form = () => {
           Submit
         </button>
       </form>
+
+      <div className="Link">
+        <Link to="/form1">Form1</Link>
+      </div>
     </div>
   );
 };
