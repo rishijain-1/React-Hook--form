@@ -4,7 +4,7 @@ import type { FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 export const Form = () => {
-  // useState to manage a custom success message
+  
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const form = useForm<FieldValues>();

@@ -1,4 +1,27 @@
-# React + TypeScript + Vite
+# React-hook-Form
+React-hool-form is single page website using Vite (React). This website is made for task assign to me. your can fill your details in this.This website is deployed to [here](https://react-hook-form-tau-one.vercel.app/)
+
+#Tech Stack
+Client: React
+
+Server: vercel
+
+#Run Locally
+Clone the project
+
+  git clone https://github.com/rishijain-1/React-Hook--form
+Go to the project directory
+
+  cd react-form
+Install dependencies
+
+  npm install
+Start the server
+
+  npm run start
+#Feedback
+If you have any feedback, please reach out to us at rishijain0652@gmail.com
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
