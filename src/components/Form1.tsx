@@ -38,7 +38,7 @@ export const Form1 = () => {
   };
   return (
     <div>
-      <h1>Form 1</h1>
+        <h1>Form 1 With Zod</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
         <input
